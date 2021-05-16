@@ -36,7 +36,7 @@ ARG CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints
 
 RUN pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
 
-RUN pip install yfinance nsetools pandas dash pymysql
+RUN pip install yfinance nsetools pandas dash pymysql sqlalchemy
 
 COPY ./entrypoint.sh ./entrypoint.sh
 

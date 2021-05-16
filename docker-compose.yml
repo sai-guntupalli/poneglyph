@@ -2,15 +2,15 @@ version: '3.8'
 
 services: 
     my_airflow:
-        build: ./airflow/setup/airflow
+        build: ./poneglyph/airflow/setup/airflow
         image: my_airflow_image
         ports: 
             - target: 8080
               published: 8080
         container_name: my_airflow_container
         volumes:
-            - ./airflow/dags:/usr/local/airflow/dags
-            - ./airflow/plugins:/usr/local/airflow/plugins
+            - ./poneglyph/airflow/dags:/usr/local/airflow/dags
+            - ./poneglyph/airflow/plugins:/usr/local/airflow/plugins
 
 
     my_sql:
@@ -21,7 +21,9 @@ services:
         environment: 
             MYSQL_ALLOW_EMPTY_PASSWORD: "true"
         volumes:
+            - ./poneglyph/airflow/setup/sql:/docker-entrypoint-initdb.d
             - mysql_data:/var/lib/mysql
+
 
 volumes: 
     mysql_data:
